@@ -68,6 +68,15 @@ function registerLayouts() {
   registerLayout('form', layouts.form.init, true);
   registerLayout('cc-validator', layouts.creditCard.init, true);
   registerLayout('error', layouts.error.init, true);
+  registerLayout('choose', layouts.choose.init, true);
+  registerLayout('rr-search', layouts.rrSearch.init, true);
+  registerLayout('pie-chart', layouts.pieChart.init, true);
+  registerLayout('bill-summary', layouts.billSummary.init, true);
+  registerLayout('bill-detail', layouts.billDetail.init, true);
+  registerLayout('bill-data', layouts.billData.init, true);
+  registerLayout('Loadtime', layouts.LoadTime.init, true);
+  registerLayout('planSuggest', layouts.planSuggest.init, true);
+  registerLayout('dataPieChart', layouts.dataPieChart.init, true);
   for (var i = 0; i < registeredLayouts.length; i++)
     layoutInit[registeredLayouts[i]]();
 }

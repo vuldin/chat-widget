@@ -1,0 +1,17 @@
+.arc text {
+  font: 14px sans-serif;
+  fill: white;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+.d3-tip {
+  line-height: 1;
+  /*font-weight: bold;*/
+  padding: 12px;
+  background: #464646;
+  color: #fff;
+  border-radius: 2px;
+}

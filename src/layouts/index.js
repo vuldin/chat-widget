@@ -20,6 +20,15 @@ var chooseLayout = require('./choose');
 var formLayout = require('./form');
 var creditCardLayout = require('./cc-validator');
 var errorLayout = require('./error');
+let rrSearch = require('./rr-search')
+let pieChart = require('./pie-chart')
+let billSummary = require('./bill-summary')
+let billDetail = require('./bill-detail')
+let billData = require('./bill-data')
+let LoadTime = require('./LoadTime')
+let planSuggest = require('./planSuggest')
+let dataPieChart = require('./dataPieChart')
+
 
 module.exports = {
   showLocations: showLocationsLayout,
@@ -29,5 +38,13 @@ module.exports = {
   choose: chooseLayout,
   creditCard: creditCardLayout,
   form: formLayout,
-  error: errorLayout
+  error: errorLayout,
+  rrSearch: rrSearch,
+  pieChart: pieChart,
+  billSummary: billSummary,
+  billDetail: billDetail,
+  billData: billData,
+  LoadTime: LoadTime,
+  planSuggest:planSuggest,
+  dataPieChart: dataPieChart,
 };
