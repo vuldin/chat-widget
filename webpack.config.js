@@ -110,7 +110,7 @@ module.exports = {
   },
   env: env,
   context: paths.context,
-  entry: paths.entry,
+  entry: ['babel-polyfill', paths.entry],
   output: {
     path: paths.output,
     filename: filename,
@@ -142,7 +142,7 @@ module.exports = {
       loader: 'json',
       test: /\.json$/
     },
-    { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+    { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
     { test: /\.css?$/, include: path.join(__dirname, 'node_modules', 'font-awesome'), loaders: ['style', 'css']},
     { test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
     { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
