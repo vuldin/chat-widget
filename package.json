@@ -68,7 +68,9 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-fontawesome": "^1.6.1",
-    "react-stars": "^2.1.0"
+    "react-stars": "^2.1.0",
+    "superagent": "^3.5.2",
+    "victory": "^0.20.0"
   },
   "devDependencies": {
     "axios": "0.12.0",
