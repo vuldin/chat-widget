@@ -28,6 +28,7 @@ let billData = require('./bill-data')
 let LoadTime = require('./LoadTime')
 let planSuggest = require('./planSuggest')
 let dataPieChart = require('./dataPieChart')
+let dataUsage = require('./dataUsage')
 
 
 module.exports = {
@@ -47,4 +48,5 @@ module.exports = {
   LoadTime: LoadTime,
   planSuggest:planSuggest,
   dataPieChart: dataPieChart,
+  dataUsage: dataUsage,
 };
