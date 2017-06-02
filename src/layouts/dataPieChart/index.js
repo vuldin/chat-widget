@@ -1,11 +1,9 @@
 import events,{ subscribe, publish } from '../../events'
 import React, { Component } from 'react'
 import { findDOMNode, render } from 'react-dom'
-import D3PieChart from './d3PieChart'
-import marked from 'marked'
 import './style.css'
 import request from 'superagent'
-import { VictoryPie } from 'victory'
+import { VictoryPie, VictoryLabel } from 'victory'
 
 class App extends Component {
   state = {
@@ -19,7 +17,6 @@ class App extends Component {
   async componentDidMount() {
     let cciData = await Promise.all([
       request.get('http://172.27.12.35:6001/history'),
-      //request.get('http://172.27.12.35:6001/profile')
     ])
     let apps = []
     cciData[0].body.forEach( day => {
@@ -43,14 +40,42 @@ class App extends Component {
     await this.setStateAsync({apps: apps})
     publish('send', {silent: true, text: 'piechart done'})
   }
+  componentWillUnmount() {
+    // TODO
+  }
   render() {
     return <div className='IBMChat-watson-message IBMChat-watson-message-theme' style={{display:'flex',flexFlow:'column'}}>
-      <div style={{display:'flex'}}>
+      <div style={{display:'flex', width: '370px'}}>
         {/*
           animate={{duration: 3000}}
+          width={250}
+          height={250}
+          style={{labels: {fill: 'white'}}}
+          width={200}
+          height={200}
+          labelComponent={<VictoryLabel
+            style={{
+              fontSize: '3px',
+              fill: 'white',
+            }}
+          />}
+        */}
+        <VictoryPie
+          data={this.state.apps}
+          padding={{left: 80, right: 80}}
+          colorScale={'qualitative'}
+          style={{labels: {fill: 'white'}}}
+          labelRadius={ 115 }
+          labelComponent={<VictoryLabel
+            style={{
+              fontSize: '16px',
+              fill: 'white',
+            }}
+          />}
+          innerRadius={ 50 }
           events={[
             {
-              target: 'data',
+              target: 'labels',
               eventHandlers: {
                 onClick: (evt, obj) => {
                   console.log(obj)
@@ -58,18 +83,6 @@ class App extends Component {
               }
             }
           ]}
-        */}
-        {/*
-          width={250}
-          height={250}
-          innerRadius={250 / 5}
-        */}
-        <VictoryPie
-          data={this.state.apps}
-          padding={{left: 80, right: 80}}
-          labelRadius={ 400 / 3}
-          colorScale={'qualitative'}
-          style={{labels: {fill: 'white'}}}
         />
         {/*
         <div style={{
