@@ -1,0 +1,3 @@
+- planSuggest: replace text with table (possibly rc-table)
+- pieDataChart: finish showing pie details
+- topLocation: change the entry button label to 'show top location'
