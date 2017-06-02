@@ -77,6 +77,8 @@ function registerLayouts() {
   registerLayout('Loadtime', layouts.LoadTime.init, true);
   registerLayout('planSuggest', layouts.planSuggest.init, true);
   registerLayout('dataPieChart', layouts.dataPieChart.init, true);
+  registerLayout('topLocation', layouts.topLocation.init, true);
+  registerLayout('dataUsage', layouts.dataUsage.init, true);
   for (var i = 0; i < registeredLayouts.length; i++)
     layoutInit[registeredLayouts[i]]();
 }
