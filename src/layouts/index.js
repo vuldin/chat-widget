@@ -28,7 +28,10 @@ let billData = require('./bill-data')
 let LoadTime = require('./LoadTime')
 let planSuggest = require('./planSuggest')
 let dataPieChart = require('./dataPieChart')
+<<<<<<< HEAD
 let topLocation = require('./topLocation')
+=======
+>>>>>>> e65b48cbb28345c005f89af6492a051edec8a80c
 let dataUsage = require('./dataUsage')
 
 
