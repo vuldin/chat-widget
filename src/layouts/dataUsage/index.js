@@ -44,22 +44,22 @@ class App extends Component {
 	      })
 	    })
 	    apps.forEach( app => app.y = Math.round( app.y * 100 + Number.EPSILON ) / 100) // https://stackoverflow.com/a/41716722/2316606
-	    await this.setStateAsync({apps: apps})
-	    await this.setStateAsync({profile: cciData[1].body})
-	    await this.setStateAsync({totalData:totalData})
+	    totalData = totalData/1024
+	    totalData = Math.round( totalData * 100 + Number.EPSILON ) / 100
+	    console.log("Total Data:", totalData)
+	    await this.setStateAsync({apps: apps, profile: cciData[1].body, totalData:totalData})
 	    publish('send', {silent: true, text: 'piechart done'})
 	  }
 	
   
   render() {
 	let profile = this.state.profile[0]
-	let result = <div/>
-    console.log("profile", this.state.profile)
+	let result = <div/>  
     if(profile != undefined) result = <div className='IBMChat-watson-message IBMChat-watson-message-theme' style={{display:'flex',flexFlow:'column'}}>
 	      <div>Here is your data usage information:</div>
 	      <ul>
-	      	<li>Data used this month is {this.state.totalData} </li> 
-	      	<li>Your monthly allowance: {profile.data_offering} gb/month.</li>
+	      	<li>Data used this month is {this.state.totalData} gb.</li> 
+	      	<li>Your monthly allowance: {profile.data_offering/1048576} gb/month.</li>
 	      	<li>Your data plan is {profile.plan_name}</li>
 	      </ul>
 	    </div>
