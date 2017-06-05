@@ -4,8 +4,8 @@ table {
 }
 
 th, td {
-    text-align: left;
-    padding: 8px;
+    text-align: right;
+    padding: 80px;
 }
 
 tr:nth-child(even){
@@ -14,4 +14,11 @@ tr:nth-child(even){
 }
 td:nth-child(odd){
   color: grey;
+}
+
+newTable{
+	border-collapse: collapse;
+    width: 100%;
+    background-color: rgba(70, 70, 70, 1);
+   border-radius: 0.5em;
 }

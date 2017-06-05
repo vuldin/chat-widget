@@ -36,7 +36,7 @@ this.planText2 = `
 	    return <div className='IBMChat-watson-message IBMChat-watson-message-theme' style={{display:'flex',flexFlow:'column'}}>
 	        <div><p></p><p></p></div>
 	        <div>The following Tariff may suit your needs better:  </div>
-	        <div style={{flex: 2,display:'flex',alignItems:'center'}} dangerouslySetInnerHTML={this.rawMarkup(this.planText2)}/>  
+	        <div style={{flex: 2,display:'flex',alignItems:'center'}} className="newTable" dangerouslySetInnerHTML={this.rawMarkup(this.planText2)}/>  
 	        
 	    </div>
 	  }
