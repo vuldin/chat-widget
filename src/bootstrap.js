@@ -79,6 +79,7 @@ function registerLayouts() {
   registerLayout('dataPieChart', layouts.dataPieChart.init, true);
   registerLayout('topLocation', layouts.topLocation.init, true);
   registerLayout('dataUsage', layouts.dataUsage.init, true);
+  registerLayout('dataUsageDetail', layouts.dataUsageDetail.init, true);
   for (var i = 0; i < registeredLayouts.length; i++)
     layoutInit[registeredLayouts[i]]();
 }

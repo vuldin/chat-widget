@@ -1,3 +1,14 @@
-- planSuggest: replace text with table (possibly rc-table)
-- pieDataChart: finish showing pie details
-- topLocation: change the entry button label to 'show top location'
+- COMPLETE planSuggest: replace text with table (possibly rc-table)
+- COMPLETE pieDataChart: finish showing pie details
+- COMPLETE pieDataChart: add the following sentence
+  - Your most used application is INSTAGRAM, which has used YYYmb out of your alloted ZZZmb.
+- COMPLETE topLocation: change the entry button label to 'show top location'
+- styling: make sure server uses project version that takes up full window
+- add [dashboard](https://tme-wva-dashboard.mybluemix.net/dashboard.html?chat=0)
+  - fix redzone slowdown issues
+    - fontawesome
+    - google font
+  - handle chat similar to [this](http://gsc-wno-dashboard.mybluemix.net/)
+- import stylesheet
+- fix piechart display
+- pull changes
