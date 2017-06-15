@@ -49,6 +49,7 @@
 .IBMChat-chat-container {
   display: table-row;
   margin: 0;
+  font-size: 18px;
   padding: 0;
 }
 
