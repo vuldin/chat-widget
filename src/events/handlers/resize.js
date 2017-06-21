@@ -12,14 +12,19 @@
 * the License.
 */
 
-var state = require('../../state');
-var events = require('../../events');
+var state = require("../../state");
+var events = require("../../events");
 
 var debugResize = false;
 var timeout;
 
 function _getHeight(element) {
-  return Math.floor(window.getComputedStyle(element).getPropertyValue('height').replace('px', ''));
+  return Math.floor(
+    window
+      .getComputedStyle(element)
+      .getPropertyValue("height")
+      .replace("px", "")
+  );
 }
 
 function resize() {
@@ -31,7 +36,6 @@ function resize() {
 }
 
 function _resize() {
-
   var current = state.get();
   if (current.isVisible && current.active) {
     var maxInputPercentage = 35,
@@ -43,29 +47,41 @@ function _resize() {
       rootHeight = current.root.clientHeight,
       rootWidth = current.root.clientWidth,
       maxInputHeight = rootHeight * (maxInputPercentage / 100),
-      calculatedMaxInputHeight = (maxInputHeight > 96) ? maxInputHeight : 96,
-      cloneHeight = (current.input) ? _getHeight(current.inputClone) : null,
-      inputHeight = (current.input) ? (_getHeight(current.input)) : 0,
-      newInputClone = (current.input && current.input.value && current.input.value.length > 0) ? current.input.value.replace(/\n/g, '<br />') : 'Enter message...',
-      currentInputClone = (current.input) ? current.inputClone.innerHTML : null;
+      calculatedMaxInputHeight = maxInputHeight > 96 ? maxInputHeight : 96,
+      cloneHeight = current.input ? _getHeight(current.inputClone) : null,
+      inputHeight = current.input ? _getHeight(current.input) : 0,
+      newInputClone = current.input &&
+        current.input.value &&
+        current.input.value.length > 0
+        ? current.input.value.replace(/\n/g, "<br />")
+        : "Enter message...",
+      currentInputClone = current.input ? current.inputClone.innerHTML : null;
 
     var chatChanged = function() {
-      if (newState.chatHolderHeight !== undefined || newState.containerHeight !== undefined)
-        events.publish('scroll-to-bottom');
-      return (newState.rootWidth !== undefined || newState.chatHolderHeight !== undefined || newState.rootHeight !== undefined || newState.isLarge !== undefined || newState.containerHeight !== undefined || newState.inputHeight !== undefined);
+      if (
+        newState.chatHolderHeight !== undefined ||
+        newState.containerHeight !== undefined
+      )
+        events.publish("scroll-to-bottom");
+      return (
+        newState.rootWidth !== undefined ||
+        newState.chatHolderHeight !== undefined ||
+        newState.rootHeight !== undefined ||
+        newState.isLarge !== undefined ||
+        newState.containerHeight !== undefined ||
+        newState.inputHeight !== undefined
+      );
     };
 
     setTimeout(function() {
       if (current.rootHeight !== rootHeight) {
-        if (debugResize)
-          console.log('New Root Height:', rootHeight);
+        if (debugResize) console.log("New Root Height:", rootHeight);
         newState.rootHeight = rootHeight;
       }
       if (current.rootWidth !== rootWidth) {
-        if (debugResize)
-          console.log('New Root Width:', rootWidth);
+        if (debugResize) console.log("New Root Width:", rootWidth);
         newState.rootWidth = rootWidth;
-        current.chat.style.width = rootWidth + 'px';
+        current.chat.style.width = rootWidth + "px";
         newState.rootWidth = rootWidth;
       }
     }, 0);
@@ -81,13 +97,19 @@ function _resize() {
 
         if (current.inputHeight !== cloneHeight) {
           if (debugResize)
-            console.log('Input height does not match:', current.inputHeight, inputHeight);
-          inputHeight = (calculatedMaxInputHeight > cloneHeight) ? cloneHeight : calculatedMaxInputHeight;
+            console.log(
+              "Input height does not match:",
+              current.inputHeight,
+              inputHeight
+            );
+          inputHeight = calculatedMaxInputHeight > cloneHeight
+            ? cloneHeight
+            : calculatedMaxInputHeight;
         }
 
         if (current.inputHeight !== inputHeight) {
           if (debugResize)
-            console.log('New Input Height:', current.inputHeight, inputHeight);
+            console.log("New Input Height:", current.inputHeight, inputHeight);
           current.input.style.height = inputHeight + "px";
           newState.inputHeight = inputHeight;
         }
@@ -95,33 +117,40 @@ function _resize() {
     }, 0);
 
     setTimeout(function() {
-
-      if (current.input)
-        inputHolderHeight = _getHeight(current.inputContainer);
+      if (current.input) inputHolderHeight = _getHeight(current.inputContainer);
       chatHolderHeight = _getHeight(current.chatHolder);
       chatHolderMaxHeight = chatHolderHeight;
       if (debugResize)
-        console.log('chatHolderHeight', chatHolderHeight, 'rootHeight', rootHeight, 'inputHolderHeight', inputHolderHeight);
+        console.log(
+          "chatHolderHeight",
+          chatHolderHeight,
+          "rootHeight",
+          rootHeight,
+          "inputHolderHeight",
+          inputHolderHeight
+        );
       containerHeight = Math.floor(rootHeight - inputHolderHeight);
 
       if (chatHolderHeight < containerHeight) {
-        chatHolderHeight = 'auto';
-        chatHolderMaxHeight = containerHeight + 'px';
+        chatHolderHeight = "auto";
+        chatHolderMaxHeight = containerHeight + "px";
       } else {
-        chatHolderHeight = containerHeight + 'px';
+        chatHolderHeight = containerHeight + "px";
         chatHolderMaxHeight = chatHolderHeight;
       }
       if (current.containerHeight !== containerHeight) {
-        if (debugResize)
-          console.log('New Container Height:', containerHeight);
+        if (debugResize) console.log("New Container Height:", containerHeight);
         current.innerContainer.style.height = containerHeight + "px";
         newState.containerHeight = containerHeight;
       }
 
-      if (current.chatHolderHeight !== chatHolderHeight || current.chatHolderMaxHeight !== chatHolderMaxHeight) {
+      if (
+        current.chatHolderHeight !== chatHolderHeight ||
+        current.chatHolderMaxHeight !== chatHolderMaxHeight
+      ) {
         if (debugResize) {
-          console.log('New Chat Holder Height: ' + chatHolderHeight);
-          console.log('New Chat Holder Max Height: ' + chatHolderMaxHeight);
+          console.log("New Chat Holder Height: " + chatHolderHeight);
+          console.log("New Chat Holder Max Height: " + chatHolderMaxHeight);
         }
         newState.chatHolderHeight = chatHolderHeight;
         newState.chatHolderMaxHeight = chatHolderMaxHeight;
@@ -130,18 +159,14 @@ function _resize() {
       }
 
       if (rootWidth >= 480) {
-        current.root.classList.add('IBMChat-isLarge');
-        if (!current.isLarge)
-          newState.isLarge = true;
+        current.root.classList.add("IBMChat-isLarge");
+        if (!current.isLarge) newState.isLarge = true;
       } else {
-        current.root.classList.remove('IBMChat-isLarge');
-        if (current.isLarge)
-          newState.isLarge = false;
+        current.root.classList.remove("IBMChat-isLarge");
+        if (current.isLarge) newState.isLarge = false;
       }
 
-      if (chatChanged())
-        state.set(newState);
-
+      if (chatChanged()) state.set(newState);
     }, 0);
   }
 }

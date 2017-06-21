@@ -30,6 +30,7 @@ let planSuggest = require('./planSuggest')
 let dataPieChart = require('./dataPieChart')
 let topLocation = require('./topLocation')
 let dataUsage = require('./dataUsage')
+let dataUsageDetail = require('./dataUsageDetail')
 
 
 module.exports = {
@@ -51,4 +52,5 @@ module.exports = {
   dataPieChart: dataPieChart,
   topLocation: topLocation,
   dataUsage: dataUsage,
+  dataUsageDetail: dataUsageDetail,
 };
