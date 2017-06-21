@@ -25,6 +25,7 @@ var tryIt = require('./try-it');
 var clear = require('./clear');
 var reset = require('./reset');
 var chatID = require('./chatid');
+var livePerson = require('./livePerson')
 
 module.exports = {
   /**
@@ -165,5 +166,7 @@ module.exports = {
   /**
   * @ignore
   */
-  reset: reset
+  reset: reset,
+  
+  livePerson: livePerson
 };

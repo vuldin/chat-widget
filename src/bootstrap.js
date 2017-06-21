@@ -29,6 +29,8 @@ var layoutInit = {};
 var registeredLayouts = [];
 
 function registerEvents(tryIt, playback) {
+
+  events.subscribe('action:agent', eventHandlers.livePerson);	
   events.subscribe('start', eventHandlers.start);
   events.subscribe('chatID', eventHandlers.chatID);
   events.subscribe('resize', eventHandlers.resize);
@@ -36,7 +38,11 @@ function registerEvents(tryIt, playback) {
   events.subscribe('enable-loading', eventHandlers.input.enableLoadingInput);
   events.subscribe('disable-loading', eventHandlers.input.disableLoadingInput);
   events.subscribe('scroll-to-bottom', eventHandlers.scrollToBottom);
+
   events.subscribe('receive', eventHandlers.receive);
+ 
+
+  
   if (playback === true) { //TODO: remove if playback when Dashboard code is updated
     events.subscribe('send', eventHandlers.sendMock);
   } else {
@@ -50,7 +56,7 @@ function registerEvents(tryIt, playback) {
     events.subscribe('send-mock', eventHandlers.sendMock);
     events.subscribe('error-clear', eventHandlers.error.clearError);
     events.subscribe('reset', eventHandlers.reset);
-  }
+ }
   if (tryIt === true) {
     events.subscribe('try-it-error', eventHandlers.error.tryIt);
     events.subscribe('try-it-layout-subscription', eventHandlers.tryIt.layoutError);
@@ -117,6 +123,7 @@ function init(config) {
         events.subscribe('httpError', config.errorHandler, config.errorHandlerContext);
       else
         events.subscribe('httpError', eventHandlers.error.httpError);
+      
       registerEvents(config.tryIt, config.playback);
       registerLayouts();
       //TODO: remove if playback when Dashboard code is updated

@@ -59,6 +59,8 @@ var showLocationsLayout = {
         subscribe('resize', sizeMap);
       locationIDs.push(data.uuid);
       showLocations[data.uuid] = showLocation;
+      //added for the use case
+      publish('send', { silent: true, text: 'Done' });
     });
   }
 };
